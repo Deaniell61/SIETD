@@ -1,0 +1,163 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="#">SIETD</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="#">MSPAS</a>
+  </li>
+  <li class="breadcrumb-item active">Graficas</li>
+</ol>
+
+<div class="row">
+  <div class="col-lg-6" style="margin-bottom: 10px">
+
+    <!-- Example Bar Chart Card -->
+
+    <div class="card mb-12">
+      <div class="card-header">
+        <i class="fa fa-filter"></i> Filtros
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 my-auto">
+            <label for="departamento">Departamento</label>
+            <select name="departamento" class="form-control" id="departamento" required ngModel #departamento="ngModel" (change)="refereshChart(departamento.value)">
+              <option value="4"></option>
+              <option *ngFor="let dep of DepartamentoCombo" value="{{dep.id}}">{{dep.nombre}}</option>
+            </select>
+
+          </div>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="col-lg-6" style="margin-bottom: 10px">
+    <!-- Example Bar Chart Card -->
+
+    <div class="card mb-12">
+      <div class="card-header">
+        <i class="fa fa-pie-chart"></i> Cantidad de Ambulancias
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-sm-12 my-auto">
+            <div>
+              <div style="display: block">
+                <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" [colors]="pieChartColors" (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6" style="margin-bottom: 10px">
+
+    <!-- Example Bar Chart Card -->
+    <div class="card mb-12">
+      <div class="card-header">
+        <i class="fa fa-bar-chart"></i> Cantidad de Doctores y Enfermeras
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 my-auto">
+            <div>
+              <div style="display: block">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+                  [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-sm-6 my-auto">
+                            <table class="table table-responsive table-condensed">
+                                <tr>
+                                    <th *ngFor="let label of barChartLabels">{{label}}</th>
+                                </tr>
+                                <tr *ngFor="let d of barChartData">
+                                    <td *ngFor="let label of barChartLabels; let j=index">{{d && d.data[j]}}</td>
+                                </tr>
+                            </table>
+                        </div> -->
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6" style="margin-bottom: 10px">
+
+    <!-- Example Bar Chart Card -->
+    <div class="card mb-12">
+      <div class="card-header">
+        <i class="fa fa-pie-chart"></i> Cantidad de Camas
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 my-auto">
+            <div>
+              <div style="display: block">
+                <canvas baseChart [data]="pieChartDataEst" [labels]="pieChartLabelsEst" [chartType]="pieChartTypeEst" [colors]="pieChartColorsEst"
+                  (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6" style="margin-bottom: 10px">
+    
+        <!-- Example Bar Chart Card -->
+        <div class="card mb-12">
+          <div class="card-header">
+            <i class="fa fa-pie-chart"></i> Cantidad de Centros de Salud
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12 my-auto">
+                <div>
+                  <div style="display: block">
+                    <canvas baseChart [data]="pieChartDataCentros" [labels]="pieChartLabelsCentros" [chartType]="pieChartTypeCentros" [colors]="pieChartColorsCentros"
+                      (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+                  </div>
+    
+                </div>
+              </div>
+    
+    
+    
+            </div>
+          </div>
+          <div class="card-footer small text-muted">
+            Updated yesterday at 11:59 PM
+          </div>
+        </div>
+    
+      </div>
+
+</div>

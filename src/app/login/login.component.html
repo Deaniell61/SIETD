@@ -1,0 +1,57 @@
+<div class="row" style="margin-right: 0px; height: 100%">
+        <div class="col-md-7">
+      <div class="" style="height: 100%">
+        
+      </div>  
+    </div>  
+<div class=" col-md-5 red">
+
+          <div class="contenedor">
+            
+              <div class="text-center" style="padding:50px 0">
+                  <div class="logo">login</div>
+                  <!-- Main Form -->
+                  <div class="login-form-1">
+                    <form id="login-form" class="text-left" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+                      <div class="login-form-main-message"></div>
+                      <div class="main-login-form">
+                        <div class="login-group">
+                          <div class="form-group">
+                            <label for="lg_username" class="sr-only">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                            ngModel #username="ngModel" placeholder="username">
+                          </div>
+                          <div class="form-group">
+                            <label for="lg_password" class="sr-only">Password</label>
+                            <input type="password" class="form-control" id="password" name="password"
+                            ngModel #password="ngModel" placeholder="password">
+                          </div>
+                          <div class="form-group login-group-checkbox">
+                            <input type="checkbox" id="lg_remember" name="remember" ngModel>
+                            <label for="lg_remember">remember</label>
+                          </div>
+                        </div>
+                        <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                      </div>
+                      <div class="etc-login-form">
+                        <p>forgot your password? <a href="#">click here</a></p>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- end:Main Form -->
+                </div>
+            
+
+    </div>
+  </div>
+  <div>
+    <simple-notifications [options]="options"></simple-notifications>
+    <div class="modal fade" id="Loading"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="text-center" style="margin-top:50%;">
+          <loaders-css [loader]="'line-scale'" [loaderClass]="'loader1'" ></loaders-css>
+          
+        </div>
+      </div>
+    </div>
+    

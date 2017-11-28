@@ -1,0 +1,545 @@
+<!-- main app container -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="#">SIETD</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard" routerLinkActive="active" [routerLink]="[ './dashboard' ]">
+                <a class="nav-link">
+                    <i class="fa fa-fw fa-dashboard"></i>
+                    <span class="nav-link-text">
+              Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item " data-toggle="tooltip" data-placement="right" title="Charts" routerLinkActive="active" [routerLink]="[ 'charts' ]">
+                <a class="nav-link">
+                    <i class="fa fa-fw fa-area-chart"></i>
+                    <span class="nav-link-text">
+              Charts</span>
+                </a>
+            </li>
+            <li *ngIf="rol=='2'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#ADMINMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              Administrador</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="ADMINMulti">
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './ADMIN/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './ADMIN/usuarios' ]"><i class="fa fa-fw fa-users"></i><span class="nav-link-text"> Usuarios</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './ADMIN/departamentos' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Departamentos</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './ADMIN/municipios' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Municipios</span></a>
+                    </li>
+
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='DIACO' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#DIACOMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              DIACO</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="DIACOMulti">
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIACO/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIACO/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIACO/carnes' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#DIACOFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="DIACOFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIACO/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='DIDEDUC' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#DIDEDUCMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              DIDEDUC</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="DIDEDUCMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './DIDEDUC/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './DIDEDUC/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIDEDUC/establecimientos' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#DIDEDUCFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="DIDEDUCFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './DIDEDUC/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='INAB' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#INABMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              INAB</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="INABMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './INAB/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './INAB/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './INAB/detalleinab' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#INABTables">
+                            <i class="fa fa-table"></i>
+                            <span class="nav-link-text"> Tablas</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="INABTables">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './INAB/tables' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Tabla</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#INABFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="INABFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './INAB/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='MAGA' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#MAGAMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              MAGA</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="MAGAMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MAGA/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MAGA/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MAGA/agricolas' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#MAGAFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="MAGAFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MAGA/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='MARN' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#MARNMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              MARN</span>
+
+                </a>
+                <ul class="sidenav-second-level collapse" id="MARNMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MARN/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MARN/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MARN/basureros' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#MARNFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="MARNFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MARN/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='MIDES' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#MIDESMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              MIDES</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="MIDESMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MIDES/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MIDES/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MIDES/programamides' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#MIDESFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="MIDESFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MIDES/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='MSPAS' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#MSPASMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              MSPAS</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="MSPASMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MSPAS/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './MSPAS/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MSPAS/centros-sanatarios' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#MSPASTables">
+                            <i class="fa fa-table"></i>
+                            <span class="nav-link-text"> Tablas</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="MSPASTables">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MSPAS/tables' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Tabla</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#MSPASFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="MSPASFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './MSPAS/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='SESAN' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#SESANMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              SESAN</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="SESANMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './SESAN/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './SESAN/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './SESAN/asistenciaalimentaria' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#SESANFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="SESANFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './SESAN/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+            <li *ngIf="entidad=='SOSEP' || entidad=='ADMIN'" class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#SOSEPMulti">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">
+              SOSEP</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="SOSEPMulti">
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './SOSEP/dashboard' ]"><i class="fa fa-fw fa-dashboard"></i>           <span class="nav-link-text">               Dashboard</span></a>
+                    </li>
+                    <li>
+                        <a href="#" routerLinkActive="active" [routerLink]="[ './SOSEP/charts' ]"><i class="fa fa-fw fa-area-chart"></i><span class="nav-link-text"> Graficas</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './SOSEP/creciendoseguro' ]"><i class="fa fa-fw fa-address-book"></i><span class="nav-link-text">Formularios</span></a>
+                    </li>
+
+                    <li>
+
+                        <a href="#" class="nav-link-collapse collapsed" data-toggle="collapse" href="#SOSEPFiles">
+                            <i class="fa fa-file-text"></i>
+                            <span class="nav-link-text"> Archivos</span>
+                        </a>
+
+                        <ul class="sidenav-third-level collapse" id="SOSEPFiles">
+                            <li>
+                                <a href="#" class="nav-link" routerLinkActive="active" [routerLink]="[ './SOSEP/files' ]"><i class="fa fa-fw fa-upload"></i><span class="nav-link-text">Subir Archivo</span></a>
+                            </li>
+                        </ul>
+
+                    </li>
+                </ul>
+
+            </li>
+
+
+
+
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-2" href="#" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-fw fa-envelope"></i>
+                    <span class="d-lg-none">Mensajes
+              <span class="badge badge-pill badge-primary">12 Noticias</span>
+                    </span>
+                    <span class="new-indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+              <span class="number">12</span>
+                    </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+                    <h6 class="dropdown-header">Nuevos Mensajes:</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <strong>David Miller</strong>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <strong>Jane Smith</strong>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <strong>John Doe</strong>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item small" href="#">
+              Ver todos los mensajes
+            </a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle mr-lg-2" href="#" id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-fw fa-bell"></i>
+                    <span class="d-lg-none">Alertas
+              <span class="badge badge-pill badge-warning">6 New</span>
+                    </span>
+                    <span class="new-indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+              <span class="number">6</span>
+                    </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header">Nuevas Alertas:</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up"></i>
+                  Status Update</strong>
+              </span>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <span class="text-danger">
+                <strong>
+                  <i class="fa fa-long-arrow-down"></i>
+                  Status Update</strong>
+              </span>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up"></i>
+                  Status Update</strong>
+              </span>
+                        <span class="small float-right text-muted">11:21 AM</span>
+                        <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item small" href="#">
+              Ver todas las alertas
+            </a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar por...">
+                        <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+                    </div>
+                </form>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#LogoutModal">
+                    <i class="fa fa-fw fa-sign-out"></i> Cerrar Sesion</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="content-wrapper py-3">
+
+    <div class="container-fluid">
+
+        <router-outlet></router-outlet>
+
+    </div>
+</div>
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+<div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para irte?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                Selecciona "Cerrar Sesion" debajo si estas listo para terminar esta sesion.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="/" (click)="logout()">Cerrar Sesion</a>
+            </div>
+        </div>
+    </div>
+</div>

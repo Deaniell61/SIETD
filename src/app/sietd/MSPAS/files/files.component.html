@@ -1,0 +1,54 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">
+      <a href="#">SIETD</a>
+    </li>
+    <li class="breadcrumb-item">
+    <a href="#">MSPAS</a>
+  </li>
+  <li class="breadcrumb-item active">Archivos</li>
+</ol>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <!-- Standar Form -->
+            <h4>Seleccionar archivos de su equipo</h4>
+            <br />
+            <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+                <div class="form-inline">
+                    <div class="form-group">
+                        <input type="file" name="files[]" id="js-upload-files" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary" id="js-upload-submit">Enviar</button>
+                </div>
+            </form>
+            <br />
+            <!-- Drop Zone -->
+            <h4>O arrastre y suelte los archivos a continuación</h4>
+            <div class="upload-drop-zone" id="drop-zone">
+                Just drag and drop files here
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    <span class="sr-only">60% Completado</span>
+                </div>
+            </div>
+            <br />
+            <!-- Upload Finished -->
+            <div class="js-upload-finished">
+                <h3>Archivos procesados</h3>
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>archivo-01.xml</a>
+                    <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>archivo-02.xml</a>
+                    <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>archivo-03.xml</a>
+                    <a href="#" class="list-group-item list-group-item-danger"><span class="badge alert-danger pull-right">Error</span>archivo-03.xml</a>
+                    <a href="#" class="list-group-item list-group-item-success"><span class="badge alert-success pull-right">Success</span>archivo-04.xml</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /container -->

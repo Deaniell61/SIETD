@@ -1,0 +1,84 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">SIETD</a>
+      </li>
+      <li class="breadcrumb-item">
+      <a href="#">MIDES</a>
+    </li>
+    <li class="breadcrumb-item active">Graficas</li>
+  </ol>
+ 
+  <!-- Area Chart Example -->
+  <div class="card mb-3">
+    <div class="card-header">
+      <i class="fa fa-area-chart"></i>
+      Area Chart Example
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+              <div style="display: block;">
+              <canvas baseChart width="400" height="100"
+                          [datasets]="lineChartData"
+                          [labels]="lineChartLabels"
+                          [options]="lineChartOptions"
+                          [colors]="lineChartColors"
+                          [legend]="lineChartLegend"
+                          [chartType]="lineChartType"
+                          (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)"></canvas>
+              </div>
+            </div>
+            
+          </div>
+    </div>
+    
+    <div class="card-footer small text-muted">
+      Updated yesterday at 11:59 PM
+    </div>
+  </div>
+  
+  <div class="row">
+  
+    <div class="col-lg-8">
+  
+      <!-- Example Bar Chart Card -->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-bar-chart"></i>
+          Bar Chart Example
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-8 my-auto">
+                <div>
+                    <div style="display: block">
+                      <canvas baseChart
+                              [datasets]="barChartData"
+                              [labels]="barChartLabels"
+                              [options]="barChartOptions"
+                              [legend]="barChartLegend"
+                              [chartType]="barChartType"
+                              (chartHover)="chartHovered($event)"
+                              (chartClick)="chartClicked($event)"></canvas>
+                    </div>
+                    
+                  </div>
+            </div>
+            <div class="col-sm-4 text-center my-auto">
+              <div class="h4 mb-0 text-primary">$34,693</div>
+              <div class="small text-muted">YTD Revenue</div>
+              <hr>
+              <div class="h4 mb-0 text-warning">$18,474</div>
+              <div class="small text-muted">YTD Expenses</div>
+              <hr>
+              <div class="h4 mb-0 text-success">$16,219</div>
+              <div class="small text-muted">YTD Margin</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">
+          Updated yesterday at 11:59 PM
+        </div>
+      </div>
+    

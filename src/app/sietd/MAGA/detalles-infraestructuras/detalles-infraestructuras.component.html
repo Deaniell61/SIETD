@@ -1,0 +1,505 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="#">SIETD</a>
+    </li>
+    <li class="breadcrumb-item">
+        <a href="#">MAGA</a>
+    </li>
+    <li class="breadcrumb-item active"> Ingreso de Datos</li>
+</ol>
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa fa-table"></i> Lista de Registros
+    </div>
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#insertModal" style="cursor:pointer;"><i class="fa fa-plus"></i>Agregar Nuevo</button>
+                    </div>
+                    <div class="col-md-7 text-center">
+                        <div class="card-header" role="tab" id="headingOne" (click)="seleccion()" data-toggle="collapse" data-parent="#accordion" href="#Forms" aria-expanded="true" aria-controls="Forms">
+                            <h5 class="mb-0 pointer">
+                                <a>
+                          {{title}}
+                        </a>
+                                <i class="fa {{arrow}}"></i>
+                            </h5>
+
+                        </div>
+
+                        <ul class="collapse text-left ulhover" role="tabpanel" aria-labelledby="headingOne" id="Forms">
+                            <app-directs></app-directs>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <button type="button" class="btn btn-lg btn-success" (click)="onNavigate()" style="cursor:pointer;"><i class="fa fa-download"></i> Formato</button>
+                        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#SubirModal" style="cursor:pointer;">Subir</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-bordered row-border hover" width="100%" id="dataTable" cellspacing="0">
+
+
+                        <thead>
+                            <tr>
+                                <th style="width:20%;">Familias Afectadas</th>
+                                <th style="width:20%;">Infraestructura Dañada</th>
+                                <th style="width:20%;">Infraestructura Perdida</th>
+                                <th style="width:20%;">Costo Perdido</th>
+                                <th style="width:20%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of Table">
+                                <td>{{((data.cant_familias_afectadas!=null)?data.cant_familias_afectadas:'')}}</td>
+                                <td>{{((data.infraestructura_daniada!=null)?data.infraestructura_daniada:'')}}</td>
+                                <td>{{((data.infraestructura_perdida!=null)?data.infraestructura_perdida:'')}}</td>
+                                <td>{{((data.costo_perdida!=null)?data.costo_perdida:'')}}</td>
+                                <td>
+
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal" (click)="cargarSingle(data.id)" style="cursor:pointer;"><i class="fa fa-edit"></i> Editar</button>
+                                    <button type="button" class="btn btn-danger" (click)="delete(data.id)" style="cursor:pointer;"><i class="fa fa-times"></i> Eliminar</button>
+
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">
+        Updated yesterday at 11:59 PM
+    </div>
+</div>
+
+<simple-notifications [options]="options"></simple-notifications>
+
+
+<div id="insertModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Ingreso de datos</h4>
+            </div>
+            <div class="modal-body">
+                <form id="insert-form" class="row" #InsertForm="ngForm" (ngSubmit)="insert(InsertForm.value)">
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="cant_familias_afectadas">Familias Afectadas</label>
+                        <input type="number" class="form-control" id="cant_familias_afectadas" name="cant_familias_afectadas" required ngModel #cant_familias_afectadas="ngModel" placeholder="Familias Afectadas">
+                        <div *ngIf="cant_familias_afectadas.invalid && (cant_familias_afectadas.dirty || cant_familias_afectadas.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="cant_familias_afectadas.errors.required">
+                              La Familias Afectadas es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="infraestructura_daniada">Infraestructura Dañanda</label>
+                        <input type="number" class="form-control" id="infraestructura_daniada" name="infraestructura_daniada" required ngModel #infraestructura_daniada="ngModel" placeholder="Infraestructura Dañanda">
+                        <div *ngIf="infraestructura_daniada.invalid && (infraestructura_daniada.dirty || infraestructura_daniada.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura_daniada.errors.required">
+                              La Infraestructura Dañanda es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="infraestructura_perdida">Infraestructura Perdida</label>
+                        <input type="number" class="form-control" id="infraestructura_perdida" name="infraestructura_perdida" required ngModel #infraestructura_perdida="ngModel" placeholder="Infraestructura Perdida">
+                        <div *ngIf="infraestructura_perdida.invalid && (infraestructura_perdida.dirty || infraestructura_perdida.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura_perdida.errors.required">
+                              La Infraestructura Perdida es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-4">
+                        <label for="costo_perdida">Costo Perdida</label>
+                        <input type="number" class="form-control" id="costo_perdida" name="costo_perdida" required ngModel #costo_perdida="ngModel" placeholder="Costo Perdida">
+                        <div *ngIf="costo_perdida.invalid && (costo_perdida.dirty || costo_perdida.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="costo_perdida.errors.required">
+                          El costo Perdida es invalido
+                      </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="dia">Día</label>
+                        <select class="form-control" id="dia" name="dia" required ngModel #dia="ngModel" placeholder="Día" [(ngModel)]="selectedDay">
+                <option *ngFor="let data of beginDay" value="{{data.dia}}">{{data.dia}}</option>
+                </select>
+                        <div *ngIf="dia.invalid && (dia.dirty || dia.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="dia.errors.required">
+                          El Día es invalido
+                      </small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="mes">mes</label>
+                        <select class="form-control" id="mes" name="mes" required ngModel #mes="ngModel" placeholder="Mes">
+                <option value=""></option>
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+                </select>
+                        <div *ngIf="mes.invalid && (mes.dirty || mes.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="mes.errors.required">
+                          El Mes es invalido
+                      </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="anio">Año</label>
+                        <select class="form-control" id="anio" name="anio" required ngModel #anio="ngModel" placeholder="Año" [(ngModel)]="selectedDate">
+                <option *ngFor="let data of beginDate" value="{{data.anio}}">{{data.anio}}</option>
+                </select>
+                        <div *ngIf="anio.invalid && (anio.dirty || anio.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="anio.errors.required">
+                          El Año es invalido
+                      </small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="fenomeno">Fenomeno</label>
+                        <select name="fenomeno" class="form-control" id="fenomeno" required ngModel #fenomeno="ngModel" placeholder="Fenomeno">
+                      <option value="4"></option>
+                    <option *ngFor="let Data of FenomenoCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                  </select>
+                        <div *ngIf="fenomeno.invalid && (fenomeno.dirty || fenomeno.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="fenomeno.errors.required">
+                            El Fenomeno es invalido
+                        </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="infraestructura">Infraestructura</label>
+                        <select name="infraestructura" class="form-control" id="infraestructura" required ngModel placeholder="Infraestructura" #infraestructura="ngModel">
+                        <option value="4"></option>
+                      <option *ngFor="let Data of InfraestructuraCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                    </select>
+                        <div *ngIf="infraestructura.invalid && (infraestructura.dirty || infraestructura.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura.errors.required">
+                              La Infraestructura es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-6">
+                        <label for="nivel_productivo_familia">Nivel Productivo Familiar</label>
+                        <select name="nivel_productivo_familia" class="form-control" id="nivel_productivo_familia" required ngModel #nivel_productivo_familia="ngModel" placeholder="Nivel Productivo Familiar">
+                      <option value="4"></option>
+                    <option *ngFor="let Data of NivelCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                  </select>
+                        <div *ngIf="nivel_productivo_familia.invalid && (nivel_productivo_familia.dirty || nivel_productivo_familia.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="nivel_productivo_familia.errors.required">
+                            El Nivel Productivo Familiar es invalido
+                        </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-6">
+                        <label for="departamento">Departamento</label>
+                        <select name="departamento" class="form-control" id="departamento" required ngModel #departamento="ngModel" placeholder="Departamento">
+                      <option value="4"></option>
+                    <option *ngFor="let Data of DepartamentosCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                  </select>
+                        <div *ngIf="departamento.invalid && (departamento.dirty || departamento.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="departamento.errors.required">
+                            El Departamento es invalido
+                        </small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xl-6 mb-6">
+                        <label for="municipio">Municipio</label>
+                        <select name="municipio" class="form-control" id="municipio" required ngModel #municipio="ngModel" placeholder="Municipio">
+                      <option value="4"></option>
+                    <option *ngFor="let Data of MunicipioCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                  </select>
+                        <div *ngIf="municipio.invalid && (municipio.dirty || municipio.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="municipio.errors.required">
+                            El Municipio es invalido
+                        </small>
+                        </div>
+                    </div>
+
+
+
+                    <input type="text" hidden id="usuario" name="usuario" ngModel #usuario="ngModel" [(ngModel)]="idUser">
+
+
+
+
+
+
+
+                    <div class="form-group col-xl-12 text-right mb-15">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close" ></i> Cancel</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer" style="border:none;">
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Edicion de datos</h4>
+            </div>
+            <div class="modal-body" *ngIf="selectedData">
+                <form id="update-form" class="row" #UpdateForm="ngForm" (ngSubmit)="update(UpdateForm.value)">
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="cant_familias_afectadas">Familias Afectadas</label>
+                        <input type="number" class="form-control" id="cant_familias_afectadas" name="cant_familias_afectadas" required [(ngModel)]="selectedData.cant_familias_afectadas" ngModel #cant_familias_afectadas="ngModel" placeholder="Familias Afectadas">
+                        <div *ngIf="cant_familias_afectadas.invalid && (cant_familias_afectadas.dirty || cant_familias_afectadas.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="cant_familias_afectadas.errors.required">
+                                  La Familias Afectadas es invalido
+                              </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="infraestructura_daniada">Infraestructura Dañanda</label>
+                        <input type="number" class="form-control" id="infraestructura_daniada" name="infraestructura_daniada" required [(ngModel)]="selectedData.infraestructura_daniada" ngModel #infraestructura_daniada="ngModel" placeholder="Infraestructura Dañanda">
+                        <div *ngIf="infraestructura_daniada.invalid && (infraestructura_daniada.dirty || infraestructura_daniada.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura_daniada.errors.required">
+                                  La Infraestructura Dañanda es invalido
+                              </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-8">
+                        <label for="infraestructura_perdida">Infraestructura Perdida</label>
+                        <input type="number" class="form-control" id="infraestructura_perdida" name="infraestructura_perdida" required [(ngModel)]="selectedData.infraestructura_perdida" ngModel #infraestructura_perdida="ngModel" placeholder="Infraestructura Perdida">
+                        <div *ngIf="infraestructura_perdida.invalid && (infraestructura_perdida.dirty || infraestructura_perdida.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura_perdida.errors.required">
+                                  La Infraestructura Perdida es invalido
+                              </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-4">
+                        <label for="costo_perdida">Costo Perdida</label>
+                        <input type="number" class="form-control" id="costo_perdida" name="costo_perdida" required ngModel #costo_perdida="ngModel" [(ngModel)]="selectedData.costo_perdida" placeholder="Costo Perdida">
+                        <div *ngIf="costo_perdida.invalid && (costo_perdida.dirty || costo_perdida.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="costo_perdida.errors.required">
+                              El costo Perdida es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="dia">Día</label>
+                        <select class="form-control" id="dia" name="dia" required ngModel #dia="ngModel" placeholder="Día" [(ngModel)]="selectedDay">
+                    <option *ngFor="let data of beginDay" value="{{data.dia}}">{{data.dia}}</option>
+                    </select>
+                        <div *ngIf="dia.invalid && (dia.dirty || dia.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="dia.errors.required">
+                              El Día es invalido
+                          </small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="mes">mes</label>
+                        <select class="form-control" id="mes" name="mes" required ngModel #mes="ngModel" [(ngModel)]="selectedData.mes" placeholder="Mes">
+                    <option value=""></option>
+                    <option value="Enero">Enero</option>
+                    <option value="Febrero">Febrero</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Abril">Abril</option>
+                    <option value="Mayo">Mayo</option>
+                    <option value="Junio">Junio</option>
+                    <option value="Julio">Julio</option>
+                    <option value="Agosto">Agosto</option>
+                    <option value="Septiembre">Septiembre</option>
+                    <option value="Octubre">Octubre</option>
+                    <option value="Noviembre">Noviembre</option>
+                    <option value="Diciembre">Diciembre</option>
+                    </select>
+                        <div *ngIf="mes.invalid && (mes.dirty || mes.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="mes.errors.required">
+                              El Mes es invalido
+                          </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="anio">Año</label>
+                        <select class="form-control" id="anio" name="anio" required ngModel #anio="ngModel" placeholder="Año" [(ngModel)]="selectedDate">
+                    <option *ngFor="let data of beginDate" value="{{data.anio}}">{{data.anio}}</option>
+                    </select>
+                        <div *ngIf="anio.invalid && (anio.dirty || anio.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="anio.errors.required">
+                              El Año es invalido
+                          </small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="fenomeno">Fenomeno</label>
+                        <select name="fenomeno" class="form-control" id="fenomeno" required ngModel #fenomeno="ngModel" [(ngModel)]="selectedData.fenomeno" placeholder="Fenomeno">
+                          <option value="4"></option>
+                        <option *ngFor="let Data of FenomenoCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                      </select>
+                        <div *ngIf="fenomeno.invalid && (fenomeno.dirty || fenomeno.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="fenomeno.errors.required">
+                                El Fenomeno es invalido
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-4">
+                        <label for="infraestructura">Infraestructura</label>
+                        <select name="infraestructura" class="form-control" id="infraestructura" required ngModel [(ngModel)]="selectedData.infraestructura" placeholder="Infraestructura" #infraestructura="ngModel">
+                            <option value="4"></option>
+                          <option *ngFor="let Data of InfraestructuraCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                        </select>
+                        <div *ngIf="infraestructura.invalid && (infraestructura.dirty || infraestructura.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="infraestructura.errors.required">
+                                  La Infraestructura es invalido
+                              </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-4 mb-6">
+                        <label for="nivel_productivo_familia">Nivel Productivo Familiar</label>
+                        <select name="nivel_productivo_familia" class="form-control" id="nivel_productivo_familia" required ngModel #nivel_productivo_familia="ngModel" [(ngModel)]="selectedData.nivel_productivo_familia" placeholder="Nivel Productivo Familiar">
+                          <option value="4"></option>
+                        <option *ngFor="let Data of NivelCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                      </select>
+                        <div *ngIf="nivel_productivo_familia.invalid && (nivel_productivo_familia.dirty || nivel_productivo_familia.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="nivel_productivo_familia.errors.required">
+                                El Nivel Productivo Familiar es invalido
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xl-6 mb-6">
+                        <label for="departamento">Departamento</label>
+                        <select name="departamento" class="form-control" id="departamento" required ngModel #departamento="ngModel" [(ngModel)]="selectedData.departamento" placeholder="Departamento">
+                          <option value="4"></option>
+                        <option *ngFor="let Data of DepartamentosCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                      </select>
+                        <div *ngIf="departamento.invalid && (departamento.dirty || departamento.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="departamento.errors.required">
+                                El Departamento es invalido
+                            </small>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group col-xl-6 mb-6">
+                        <label for="municipio">Municipio</label>
+                        <select name="municipio" class="form-control" id="municipio" required ngModel #municipio="ngModel" [(ngModel)]="selectedData.municipio" placeholder="Municipio">
+                          <option value="4"></option>
+                        <option *ngFor="let Data of MunicipioCombo" value="{{Data.id}}">{{Data.nombre}}</option>
+                      </select>
+                        <div *ngIf="municipio.invalid && (municipio.dirty || municipio.touched)" class="alert alert-danger" role="alert">
+                            <small *ngIf="municipio.errors.required">
+                                El Municipio es invalido
+                            </small>
+                        </div>
+                    </div>
+
+
+
+                    <input type="text" hidden id="usuario" name="usuario" ngModel #usuario="ngModel" [(ngModel)]="idUser">
+
+
+
+
+                    <input type="hidden" class="form-control" id="id" name="id" required ngModel #id="ngModel" [(ngModel)]="selectedData.id">
+
+                    <div class="form-group col-xl-12 text-right mb-15">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close" ></i> Cancel</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer" style="border:none;">
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+<div class="modal fade" id="SubirModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Data</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="panel panel-default">
+                        <div class="form-group col-xs-6 col-xs-offset-3">
+                            <input type="file" id="avatar" (change)="subirImagenes($event,'avatar')" />
+                            <progress value="0" max="100" id="barra_de_progreso"></progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+    <simple-notifications [options]="options"></simple-notifications>
+
+</div>
+
+<div class="modal fade" id="Loading" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="text-center" style="margin-top:50%;">
+            <app-loader></app-loader>
+        </div>
+    </div>
+</div>
